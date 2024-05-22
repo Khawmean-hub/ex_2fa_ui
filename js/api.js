@@ -25,6 +25,11 @@ function getSetting(endpoint, method, body) {
             "Authorization": "Bearer " + token
         },
         "data": body ? JSON.stringify(body) : undefined,
+        statusCode: {
+            404: function(xhr) {
+                alert("Endpoint not found 404")
+            }
+          }
     };
 }
 

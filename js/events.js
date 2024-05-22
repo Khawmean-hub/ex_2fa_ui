@@ -12,10 +12,10 @@ const page = {
         $(this).addClass('active')
         if(user.user.enable2fa){
             $('#btn_disable').show();
-            $('#btn_enable').hide();
+            $('#btn_enable, #disable_tab').hide();
         }else{
             $('#btn_enable').show();
-            $('#btn_disable').hide();
+            $('#btn_disable, #enable-2fa').hide();
         }
     },
     home: function(){
@@ -34,21 +34,23 @@ const page = {
     },
     disable2fa: function(){
         $('#disable_tab').show()
-        $('#btn_disable').show();
-        $(this).hide();
+        $('#btn_disable').hide();
     },
     enable2fa: function(){
-        $('#disable_tab').show();
+        $('#enable-2fa').show();
         $('#btn_disable').hide()
+        $('#btn_enable').removeClass('loading').hide()
     },
     verifyToEnable: function (){
         alert("2FA enable Success")
         $('#enable-2fa').hide();
         $('#btn_disable').show();
+        user.user.enable2fa = true;
     },
     verifyToDisable: function (){
         alert("Disable Success")
         $('#btn_disable, #disable_tab').hide()
         $('#btn_enable').show();
+        user.user.enable2fa = false;
     }
 }
