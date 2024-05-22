@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+</head>
+<body>
+    <div class="container ui">
+
+        <!-- =============================== Login Page ======================================= -->
+        <div id="login_form" style="width: 300px; margin: 0 auto; padding-top: 20px">
+            <h1 class="ui center aligned header">Login</h1>
+            <form class="ui form" onsubmit="return false;">
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" name="first-name" placeholder="username" id="username">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="last-name" placeholder="password" id="password">
+                </div>
+                <button class="ui button" onclick="getLogin()" type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- =============================== Verify 2FA Page ======================================= -->
+        <div id="verify_2fa" style="display: none; text-align: center; margin-top: 50px">
+            <h1>Verify 2FA</h1>
+            <div class="ui action input">
+                <input type="text" placeholder="verify code" id="txt-verify2">
+                <button class="ui button blue" id="btn_verify_code2" onclick="getVerify2fa()">Verify</button>
+            </div>
+        </div>
+
+        <!-- =============================== Home Page ======================================= -->
+        <div id="home_page" style="display: none">
+
+            <!-- Menu bar -->
+            <div class="ui secondary menu" style="background-color: #dbe7ff">
+                <a class="active item" onclick="page.homeTab()">
+                    Home
+                </a>
+                <a class="item" onclick="page.securityTab()">
+                    Security
+                </a>
+                <div class="right menu">
+                    <a class="ui item yellow" onclick="page.login()" style="background-color: #ffffdb">
+                        Logout
+                    </a>
+                </div>
+            </div>
+            
+            <!-- >>>>>>>>>>>>>>>>>>>> Home Tab Body <<<<<<<<<<<<<<<<<<<<<< -->
+            <div id="home_tab">
+                <h2>Welcome <b id="name_txt"></b></h2>
+            </div>
+
+            <!-- >>>>>>>>>>>>>>>>>>>> Security Tab Body <<<<<<<<<<<<<<<<<<<<<< -->
+            <div id="security" style="display: none">
+                
+                <!-- Security Menu -->
+                <div class="ui">
+                    <div class="ui header">Two-Factor Authentication</div>
+                    <button class="ui button" id="btn_enable" onclick="get2faQRcode()">Enable</button>
+                    <button class="ui button red" id="btn_disable" style="display: none" onclick="page.enable2fa()">Disable</button>
+                </div>
+
+                <!-- 2FA Enable detail -->
+                <div id="enable-2fa" style="text-align: center; display: none">
+                    <h1>Enable 2FA</h1>
+                    <p class="ui header" style="margin-top: 20px">Scan the QR code below using authenticator app such as
+                        Google Authenticator, Microsoft Authenticator, Authorto activate</p>
+                    <img src="" alt="qrcode" id="qrcode" width="400px" height="400px" style="margin-top: 20px; margin-bottom: 20px">
+
+                    <div>
+                        <div class="ui action input">
+                            <input type="text" placeholder="verify code" id="txt-verify">
+                            <button class="ui button blue" id="btn_verify_code" onclick="getEnable2fa()">Verify and Enable</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2FA Disable detail -->
+                <div id="disable_tab" style="display: none">
+                    <div class="ui action input">
+                        <input type="text" placeholder="verify code" id="txt-verify3">
+                        <button class="ui button red" id="btn_verify_code3" onclick="getDisable2fa()">Verify and Disable</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================================================== -->
+    <!-- scripts -->
+    <!-- ===================================================================================================== -->
+    <script src="js/api.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/functions.js"></script>
+</body>
+</html>
